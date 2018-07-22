@@ -1,7 +1,8 @@
 FROM rocker/tidyverse:3.5.1
 
 LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
-LABEL version="0.0.1"
+
+ADD VERSION .
 
 # fonts
 COPY fonts/ /root/.fonts/
