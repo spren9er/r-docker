@@ -11,7 +11,7 @@ Docker will install following software
 
 It builds an jupyter kernel with R and runs a notebook server on port 8888 on start up.
 
-Furthermore it installs every `.ttf` font located in `fonts` folder for usage with _ggplot2_.
+Furthermore it installs Google Fonts and prepares them for usage with _ggplot2_.
 
 ## Instructions
 

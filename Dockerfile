@@ -4,34 +4,31 @@ LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
 ADD VERSION .
 
-# fonts
-COPY fonts/ /root/.fonts/
-RUN fc-cache -f -v
-
-# latex
-RUN mkdir /root/texmf
-
-# r
+# r & latex & fonts
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libgdal-dev \
     libmagick++-dev \
     libudunits2-dev \
+    git \
     texlive \
     xzdec \
   && install2.r --error \
     extrafont \
     jsonlite \
     ggmap \
-    lazyeval \
     lubridate \
     plotly \
     rmarkdown \
+  && git clone https://github.com/google/fonts /root/.fonts \
+  && fc-cache -f -v \
   && R -e " \
     options(repos = c(CRAN = 'http://cran.rstudio.com')); \
     install.packages('ggplot2'); \
     devtools::install_github('thomasp85/gganimate'); \
     extrafont::font_import(prompt = FALSE); \
     extrafont::loadfonts();" \
+  && mkdir /root/r \
+  && mkdir /root/texmf \
   && tlmgr init-usertree \
   && tlmgr install ly1
 
