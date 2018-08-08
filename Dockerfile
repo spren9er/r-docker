@@ -19,6 +19,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     lubridate \
     plotly \
     rmarkdown \
+    tidytext \
+    GGally \
   && git clone https://github.com/google/fonts /root/.fonts \
   && fc-cache -f -v \
   && R -e " \
