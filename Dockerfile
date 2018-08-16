@@ -12,6 +12,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     git \
     texlive \
     xzdec \
+    libpoppler-cpp-dev \
   && install2.r --error \
     extrafont \
     jsonlite \
@@ -21,6 +22,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     rmarkdown \
     tidytext \
     GGally \
+    pdftools \
   && git clone https://github.com/google/fonts /root/.fonts \
   && fc-cache -f -v \
   && R -e " \
