@@ -12,6 +12,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     git \
     texlive \
     xzdec \
+    cargo \
     libpoppler-cpp-dev \
   && install2.r --error \
     extrafont \
