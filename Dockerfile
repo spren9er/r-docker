@@ -28,6 +28,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   && R -e " \
     options(repos = c(CRAN = 'http://cran.rstudio.com')); \
     install.packages('ggplot2'); \
+    install.packages('caret', dependencies = TRUE); \
     devtools::install_github('thomasp85/gganimate'); \
     devtools::install_github('dkahle/ggmap', ref = 'tidyup'); \
     extrafont::font_import(prompt = FALSE); \
