@@ -10,6 +10,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libmagick++-dev \
     libudunits2-dev \
     git \
+    ghostscript \
     texlive \
     xzdec \
     cargo \
