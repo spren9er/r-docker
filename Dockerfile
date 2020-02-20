@@ -32,6 +32,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     extrafont::loadfonts();" \
   && mkdir /root/r \
   && mkdir /root/texmf \
+  && tlmgr update --self --all \
   && tlmgr init-usertree \
   && tlmgr install ly1
 
