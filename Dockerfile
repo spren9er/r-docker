@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.5.1
+FROM rocker/tidyverse:3.6.2
 
 LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
@@ -18,20 +18,16 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   && install2.r --error \
     extrafont \
     jsonlite \
+    svglite \
     lubridate \
     plotly \
     rmarkdown \
     tidytext \
-    GGally \
-    pdftools \
   && git clone https://github.com/google/fonts /root/.fonts \
   && fc-cache -f -v \
   && R -e " \
     options(repos = c(CRAN = 'http://cran.rstudio.com')); \
-    install.packages('ggplot2'); \
-    install.packages('caret', dependencies = TRUE); \
     devtools::install_github('thomasp85/gganimate'); \
-    devtools::install_github('dkahle/ggmap', ref = 'tidyup'); \
     extrafont::font_import(prompt = FALSE); \
     extrafont::loadfonts();" \
   && mkdir /root/r \
@@ -52,7 +48,7 @@ RUN apt-get -y --no-install-recommends install \
   && python3 -m pip install jupyter \
   && R -e " \
     devtools::install_github('IRkernel/IRkernel'); \
-    IRkernel::installspec(name = 'ir-kernel-3.5.1', displayname = 'R 3.5.1')"
+    IRkernel::installspec(name = 'ir-kernel-3.6.2', displayname = 'R 3.6.2')"
 
 EXPOSE 8888
 
