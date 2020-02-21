@@ -4,14 +4,12 @@ LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
 ADD VERSION .
 
-# r packages & latex
+# r packages
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libgdal-dev \
     libmagick++-dev \
     libudunits2-dev \
     git \
-    ghostscript \
-    texlive \
     xzdec \
     cargo \
     libpoppler-cpp-dev \
@@ -28,7 +26,10 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     devtools::install_github('thomasp85/gganimate');"
 
 # latex
-RUN mkdir /root/r \
+RUN apt-get -y --no-install-recommends install \
+    ghostscript \
+    texlive \
+  && mkdir /root/r \
   && mkdir /root/texmf \
   && tlmgr init-usertree
 
