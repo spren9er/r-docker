@@ -21,9 +21,16 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     plotly \
     rmarkdown \
     tidytext \
+    sf \
+    magick \
+    gifski \
+    osmdata \
+    janitor \
+    arrow \
   && R -e " \
     options(repos = c(CRAN = 'http://cran.rstudio.com')); \
-    devtools::install_github('thomasp85/gganimate');"
+    devtools::install_github('thomasp85/gganimate'); \
+    arrow::install_arrow();"
 
 # latex
 RUN apt-get -y --no-install-recommends install \

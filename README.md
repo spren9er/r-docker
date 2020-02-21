@@ -29,7 +29,7 @@ docker run -it --name rstats
   -v ~/.Rprofile:/root/.Rprofile
   -e JUPYTER_TOKEN=1
   -p 8888:8888
-  rstats
+  spren9er/r-docker:TAG
 ```
 
 ## Atom
