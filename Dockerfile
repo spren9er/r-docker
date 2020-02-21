@@ -4,7 +4,7 @@ LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
 ADD VERSION .
 
-# r & latex & fonts
+# r packages & latex
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libgdal-dev \
     libmagick++-dev \
@@ -23,18 +23,21 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     plotly \
     rmarkdown \
     tidytext \
-  && git clone https://github.com/google/fonts /root/.fonts \
-  && fc-cache -f -v \
   && R -e " \
     options(repos = c(CRAN = 'http://cran.rstudio.com')); \
-    devtools::install_github('thomasp85/gganimate'); \
-    extrafont::font_import(prompt = FALSE); \
-    extrafont::loadfonts();" \
-  && mkdir /root/r \
+    devtools::install_github('thomasp85/gganimate');"
+
+# latex
+RUN mkdir /root/r \
   && mkdir /root/texmf \
-  && tlmgr update --self --all \
-  && tlmgr init-usertree \
-  && tlmgr install ly1
+  && tlmgr init-usertree
+
+# fonts
+RUN git clone https://github.com/google/fonts /root/.fonts \
+  && fc-cache -f -v \
+  && R -e " \
+    extrafont::font_import(prompt = FALSE); \
+    extrafont::loadfonts();"
 
 # jupyter
 RUN apt-get -y --no-install-recommends install \
