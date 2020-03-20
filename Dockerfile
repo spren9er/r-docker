@@ -35,10 +35,18 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 # latex
 RUN apt-get -y --no-install-recommends install \
     ghostscript \
-    texlive \
+    texlive-base \
+    texlive-latex-recommended \
+    texlive-fonts-recommended \
   && mkdir /root/r \
   && mkdir /root/texmf \
+  && tlmgr option repository ftp://tug.org/historic/systems/texlive/2018/tlnet-final
   && tlmgr init-usertree
+  && tlmgr install mdframed
+  && tlmgr install needspace
+  && texhash
+  && mktexlsr
+  && updmap-sys --sync-trees
 
 # fonts
 RUN git clone https://github.com/google/fonts /root/.fonts \
