@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.2
+FROM rocker/tidyverse:3.6.3
 
 LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
