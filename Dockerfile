@@ -37,16 +37,17 @@ RUN apt-get -y --no-install-recommends install \
     ghostscript \
     texlive-base \
     texlive-latex-recommended \
-    texlive-fonts-recommended \
+    texlive-fonts-recommended
+
+RUN tlmgr init-usertree \
   && tlmgr option repository ftp://tug.org/historic/systems/texlive/2018/tlnet-final \
-  && tlmgr init-usertree \
-  && mkdir /root/r \
-  && mkdir /root/texmf \
   && tlmgr install mdframed \
-  && tlmgr install needspace \
-  && texhash \
+  && tlmgr install needspace
+
+RUN texhash \
   && mktexlsr \
-  && updmap-sys --sync-trees
+  && updmap-sys --syncwithtrees \
+  && mkdir /root/r
 
 # fonts
 RUN git clone https://github.com/google/fonts /root/.fonts \
@@ -68,7 +69,7 @@ RUN apt-get -y --no-install-recommends install \
   && python3 -m pip install jupyter \
   && R -e " \
     devtools::install_github('IRkernel/IRkernel'); \
-    IRkernel::installspec(name = 'ir-kernel-3.6.2', displayname = 'R 3.6.2')"
+    IRkernel::installspec(name = 'ir-kernel-3.6.3', displayname = 'R 3.6.3')"
 
 EXPOSE 8888
 
