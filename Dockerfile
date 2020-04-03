@@ -38,10 +38,10 @@ RUN apt-get -y --no-install-recommends install \
     texlive-base \
     texlive-latex-recommended \
     texlive-fonts-recommended \
-  && mkdir /root/r \
-  && mkdir /root/texmf \
   && tlmgr option repository ftp://tug.org/historic/systems/texlive/2018/tlnet-final \
   && tlmgr init-usertree \
+  && mkdir /root/r \
+  && mkdir /root/texmf \
   && tlmgr install mdframed \
   && tlmgr install needspace \
   && texhash \
