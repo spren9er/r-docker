@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.3
+FROM rocker/tidyverse:4.1.0
 
 LABEL maintainer="Torsten Sprenger <mail@spren9er.de>"
 
@@ -68,7 +68,7 @@ RUN apt-get -y --no-install-recommends install \
   && python3 -m pip install jupyter \
   && R -e " \
     devtools::install_github('IRkernel/IRkernel'); \
-    IRkernel::installspec(name = 'ir-kernel-3.6.2', displayname = 'R 3.6.2')"
+    IRkernel::installspec(name = 'ir-kernel-4.1.0', displayname = 'R 4.1.0')"
 
 EXPOSE 8888
 
